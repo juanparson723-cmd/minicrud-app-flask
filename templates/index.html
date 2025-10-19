@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Listado de Alumnos{% endblock %}
+
+{% block content %}
+    <h1>Listado de Alumnos okis</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Matrícula</th>
+                <th>Nombre</th>
+                <th>Grupo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for alumno in alumnos %}
+                <tr>
+                    <td>{{ alumno.matricula }}</td>
+                    <td>{{ alumno.nombre }}</td>
+                    <td>{{ alumno.grupo }}</td>
+                    <td>
+                        <a href="{{ url_for('editar', id=alumno.id) }}" class="btn btn-sm btn-primary">Editar</a>
+                        <a href="{{ url_for('borrar', id=alumno.id) }}" class="btn btn-sm btn-danger">Borrar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+@app.route('/')
+def index():
+    return "Hola mundo"
